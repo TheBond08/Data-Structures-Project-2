@@ -1,27 +1,10 @@
-import csv
-
-file = open("MOCK_DATA.csv", newline='')
-    reader = csv.reader(file)
-
-    header = next(reader)
-
-    # Πινακας αποθήκευσης δεδομένων csv
-    dataRecord = []
-    # Τροποποίηση δεδομένων απο str σε ο,τι επιθημούμε
-    for row in reader:
-        id = int(row[0])
-        firstname = str(row[1])
-        lastname = str(row[2])
-        email = str(row[3])
-
-        dataRecord.append([id, firstname, lastname, email])
-
+import os
 
 class node:
     def __init__(self):
-        self.am = ""
-        self.on = ""
-        self.ep = ""
+        self.arithmos_mitroou = ""
+        self.onoma = ""
+        self.eponimo= ""
         self.b = 0.0
         self.ap = 0
         self.left = None
@@ -31,15 +14,15 @@ def createNode():
     r = node()
     textLine = input("Give data:")
     dataRecord = textLine.strip().split()
-    r.am = dataRecord[0]
-    r.on = dataRecord[1]
-    r.ep = dataRecord[2]
+    r.arithmos_mitroou = dataRecord[0]
+    r.onoma = dataRecord[1]
+    r.eponimo = dataRecord[2]
     r.b = float(dataRecord[3])
     r.ap = int(dataRecord[4])
     return r
 
 def addInOrder(root, newNode):
-    if newNode.am <= root.am:
+    if newNode.arithmos_mitroou <= root.arithmos_mitroou:
         if root.left == None:
             root.left = newNode
         else:
@@ -53,7 +36,7 @@ def addInOrder(root, newNode):
 def showInOrder(root):
     if root != None:
         showInOrder(root.left)
-        print(("%s %s %s %.2f %d") % (root.am, root.on, root.ep, root.b, root.ap))
+        print(("%s %s %s %.2f %d") % (root.arithmos_mitroou, root.on, root.eponimo, root.b, root.ap))
         showInOrder(root.right)
 
 def countNodes(root):
@@ -64,31 +47,54 @@ def countNodes(root):
         result += countNodes(root.right)
     return result
 
-def findByAM(root, fAM):
+def findByarithmos_mitroou(root, farithmos_mitroou):
     result = None
 
     if root != None:
-        if fAM < root.am :
-            result = findByAM(root.left, fAM)
-        elif fAM == root.am :
+        if farithmos_mitroou < root.arithmos_mitroou :
+            result = findByarithmos_mitroou(root.left, farithmos_mitroou)
+        elif farithmos_mitroou == root.arithmos_mitroou :
             result = root
         else:
-            result = findByAM(root.right, fAM)
+            result = findByarithmos_mitroou(root.right, farithmos_mitroou)
 
     return result
 
+def maxarithmos_mitroou(root) :
+    if root.right == None:
+        result = root
+    else:
+        result = maxarithmos_mitroou(root.right)
+    return result
+
+def maxGrade(root):
+    result = -1
+
+    if root != None:
+        result = maxGrade(root.left)
+        if result < root.b:
+            result = root.b
+        resultRight = maxGrade(root.right)
+        if result < resultRight:
+            result = resultRight
+    return result
 
 root = None
 
-print("-------------------Menu-----------------------")
-print("1. Add in order")
-print("2. Show in order")
-print("3. Find student by AM")
-print("0. Exit")
-ch = input("Choice: ").strip()
+while True:
+    print("""-------------------Menu-----------------------")
+1. Add in order
+2. Show in order
+3. Find student by arithmos_mitroou
+4. Show last student by arithmos_mitroou
+5. Show maximum grade
+0. Exit""")
+    
+    ch = input("Choice: ").strip()
 
-while ch != "0":
-    if ch == "1":
+    if ch == "0":
+        break
+    elif ch == "1":
         temp = createNode()
         if root == None:
             root = temp
@@ -98,21 +104,24 @@ while ch != "0":
         showInOrder(root)
         print(("Number of node:%d") % (countNodes(root)))
     elif ch == "3":
-        userAM = input("Give AM: ")
-        temp = findByAM(root, userAM)
+        userarithmos_mitroou = input("Give arithmos_mitroou: ")
+        temp = findByarithmos_mitroou(root, userarithmos_mitroou)
         if temp == None:
             print("Not found!")
         else:
-            print(("%s %s %s %.2f %d") % (temp.am, temp.on, temp.ep,
+            print(("%s %s %s %.2f %d") % (temp.arithmos_mitroou, temp.on, temp.eponimo,
                                           temp.b, temp.ap))
-
+    elif ch == "4":
+        if root == None:
+            print("Empty tree!")
+        else:
+            temp = maxarithmos_mitroou(root)
+            print(("%s %s %s %.2f %d") % (temp.arithmos_mitroou, temp.on, temp.eponimo,
+                                          temp.b, temp.ap))
+    elif ch == "5":
+        if root == None:
+            print("Empty tree!")
+        else:
+            print(("Max grade: %.2f") % (maxGrade(root)))
     else:
         print("Try again!")
-    print("-------------------Menu-----------------------")
-    print("1. Add in order")
-    print("2. Show in order")
-    print("3. Find student by AM")
-    print("4. Show last student by AM")
-    print("5. Show maximum grade")
-    print("0. Exit")
-    ch = input("Choice: ").strip()

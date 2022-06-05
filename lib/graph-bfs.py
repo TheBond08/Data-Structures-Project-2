@@ -1,22 +1,4 @@
-import os
 from array import array
-a = [[0, 1, 1, 1, 0, 0, 0, 0, 0, 0],	
-     [1, 0, 0, 0, 1, 1, 0, 0, 0, 0], 
-     [1, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-     [1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-     [0, 1, 0, 0, 0, 0, 1, 0, 1, 0],
-     [0, 0, 1, 0, 0, 1, 0, 1, 0, 0],
-     [0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
-     [0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]]
-
-Mark = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-N = len(a)
-QSIZE = N*N
-queue = array('i', QSIZE*[0])
-front = -1
-rear = -1
 
 def enqueue(k):
     global front
@@ -58,12 +40,30 @@ def bfs(k):
                 if a[i][j] == 1 and Mark[j] == 0:
                     flag = enqueue(j)
                     Mark[j] = 1
+
+a = [[0, 1, 1, 1, 0, 0, 0, 0, 0, 0],	
+     [1, 0, 0, 0, 1, 1, 0, 0, 0, 0], 
+     [1, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+     [1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+     [0, 1, 0, 0, 0, 0, 1, 0, 1, 0],
+     [0, 0, 1, 0, 0, 1, 0, 1, 0, 0],
+     [0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
+     [0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]]
+
+Mark = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+N = len(a)
+QSIZE = N*N
+queue = array('i', QSIZE*[0])
+front = -1
+rear = -1
     
-p = input("Give start node (1-%d) or out of range to exit: " % (N))
-i = int(p)
-while i >= 1 and i <= N:
-    for m in range(N):
-        Mark[m] = 0
-    bfs(i-1)
-    p = input("Give start node (1-%d) or out of range to exit: " % (N))
-    i = int(p)
+while True:
+    i = int(input("Give start node (1-%d) or out of range to exit: " % (N)))
+    if i >= 1 and i <= N:
+        for m in range(N):
+            Mark[m] = 0
+        bfs(i-1)
+    else:
+        break
