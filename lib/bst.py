@@ -61,6 +61,14 @@ def showInOrder(root,choice):
             showInOrder(root.left)
             print((root.id, root.firstname, root.lastname, root.email))
             showInOrder(root.right)
+        elif choice==2:
+            showInOrder(root.left)
+            showInOrder(root.right)
+            print((root.id, root.firstname, root.lastname, root.email))
+        else:
+            print((root.id, root.firstname, root.lastname, root.email))
+            showInOrder(root.left)
+            showInOrder(root.right)  
 
 
 def countNodes(root):
