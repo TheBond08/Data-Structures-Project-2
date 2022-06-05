@@ -1,4 +1,6 @@
 import csv
+from matplotlib import pyplot as plt
+import time
 
 file = open("MOCK_DATA.csv", newline='')
 reader = csv.reader(file)
@@ -89,6 +91,8 @@ def findByID(root, id):
 
 root = None
 count=0
+time_taken=0.0
+amount_of_data=[100]
 while True:
     print("""-------------------Menu-----------------------")
 1. Add in order
@@ -101,7 +105,9 @@ while True:
     if ch == "0":
         break
     elif ch == "1":
+        start = time.time()
         while count<=99:
+
             temp = createNode()
             if root == None:
 
@@ -118,6 +124,23 @@ while True:
                 k = k + 1
                 l = l + 1
             count= count + 1
+        end= time.time()
+
+        time_taken = end - start
+
+        #Χρονος Εισαγωγης Στοιχειων (Διαγραμμα)
+        plt.plot(amount_of_data, time_taken, color="blue", marker="o", linestyle="solid")
+        plt.grid(axis='x')
+        plt.grid(axis='y')
+        plt.xticks(amount_of_data)
+        plt.title(" Χρόνος - Πλήθος Δεδομένων")
+        plt.ylabel("Χρόνος")
+        plt.xlabel("Πλήθος Δεδομένων")
+        plt.show()
+        plt.close()
+
+
+
 
 
     elif ch == "2":
@@ -135,3 +158,7 @@ while True:
 
     else:
         print("Try again!")
+
+
+
+
