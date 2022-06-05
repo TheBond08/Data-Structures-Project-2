@@ -1,4 +1,23 @@
-import os
+import csv
+
+file = open("MOCK_DATA.csv", newline='')
+    reader = csv.reader(file)
+
+    header = next(reader)
+
+    # Πινακας αποθήκευσης δεδομένων csv
+    dataRecord = []
+    # Τροποποίηση δεδομένων απο str σε ο,τι επιθημούμε
+    for row in reader:
+        id = int(row[0])
+        firstname = str(row[1])
+        lastname = str(row[2])
+        email = str(row[3])
+
+        dataRecord.append([id, firstname, lastname, email])
+
+
+
 
 class node:
     def __init__(self):
