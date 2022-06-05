@@ -57,9 +57,10 @@ def addInOrder(root, newNode):
 
 def showInOrder(root,choice):
     if root != None:
-        showInOrder(root.left)
-        print((root.id, root.firstname, root.lastname, root.email))
-        showInOrder(root.right)
+        if choice==1:
+            showInOrder(root.left)
+            print((root.id, root.firstname, root.lastname, root.email))
+            showInOrder(root.right)
 
 
 def countNodes(root):
