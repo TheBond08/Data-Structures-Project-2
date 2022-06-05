@@ -1,8 +1,6 @@
 import csv
 
 
-
-
 file = open("MOCK_DATA.csv", newline='')
 reader = csv.reader(file)
 
@@ -107,12 +105,17 @@ while True:
         if root == None:
 
             root = temp
+            i = 1
+            j = 1
+            k = 1
+            l = 1
         else:
+
+            addInOrder(root, temp)
             i = i + 1
             j = j + 1
             k = k + 1
             l = l + 1
-            addInOrder(root, temp)
 
 
 
