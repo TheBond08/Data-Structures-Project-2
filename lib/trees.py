@@ -1,4 +1,21 @@
-import os
+import csv
+
+file = open("MOCK_DATA.csv", newline='')
+    reader = csv.reader(file)
+
+    header = next(reader)
+
+    # Πινακας αποθήκευσης δεδομένων csv
+    data = []
+    # Τροποποίηση δεδομένων απο str σε ο,τι επιθημούμε
+    for row in reader:
+        id = int(row[0])
+        firstname = str(row[1])
+        lastname = str(row[2])
+        email = str(row[3])
+
+        data.append([id, firstname, lastname, email])
+
 
 class node:
     def __init__(self):
@@ -60,24 +77,6 @@ def findByAM(root, fAM):
 
     return result
 
-def maxAM(root) :
-    if root.right == None:
-        result = root
-    else:
-        result = maxAM(root.right)
-    return result
-
-def maxGrade(root):
-    result = -1
-
-    if root != None:
-        result = maxGrade(root.left)
-        if result < root.b:
-            result = root.b
-        resultRight = maxGrade(root.right)
-        if result < resultRight:
-            result = resultRight
-    return result
 
 root = None
 
@@ -85,8 +84,6 @@ print("-------------------Menu-----------------------")
 print("1. Add in order")
 print("2. Show in order")
 print("3. Find student by AM")
-print("4. Show last student by AM")
-print("5. Show maximum grade")
 print("0. Exit")
 ch = input("Choice: ").strip()
 
@@ -108,18 +105,7 @@ while ch != "0":
         else:
             print(("%s %s %s %.2f %d") % (temp.am, temp.on, temp.ep,
                                           temp.b, temp.ap))
-    elif ch == "4":
-        if root == None:
-            print("Empty tree!")
-        else:
-            temp = maxAM(root)
-            print(("%s %s %s %.2f %d") % (temp.am, temp.on, temp.ep,
-                                          temp.b, temp.ap))
-    elif ch == "5":
-        if root == None:
-            print("Empty tree!")
-        else:
-            print(("Max grade: %.2f") % (maxGrade(root)))
+
     else:
         print("Try again!")
     print("-------------------Menu-----------------------")
