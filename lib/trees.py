@@ -6,7 +6,7 @@ file = open("MOCK_DATA.csv", newline='')
     header = next(reader)
 
     # Πινακας αποθήκευσης δεδομένων csv
-    data = []
+    dataRecord = []
     # Τροποποίηση δεδομένων απο str σε ο,τι επιθημούμε
     for row in reader:
         id = int(row[0])
@@ -14,7 +14,7 @@ file = open("MOCK_DATA.csv", newline='')
         lastname = str(row[2])
         email = str(row[3])
 
-        data.append([id, firstname, lastname, email])
+        dataRecord.append([id, firstname, lastname, email])
 
 
 class node:
