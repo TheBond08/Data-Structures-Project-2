@@ -55,21 +55,23 @@ def addInOrder(root, newNode):
             addInOrder(root.right, newNode)
 
 
-def showInOrder(root,choice):
+def InOrder(root):
     if root != None:
-        if choice==1:
-            showInOrder(root.left)
-            print((root.id, root.firstname, root.lastname, root.email))
-            showInOrder(root.right)
-        elif choice==2:
-            showInOrder(root.left)
-            showInOrder(root.right)
-            print((root.id, root.firstname, root.lastname, root.email))
-        else:
-            print((root.id, root.firstname, root.lastname, root.email))
-            showInOrder(root.left)
-            showInOrder(root.right)  
-
+        InOrder(root.left)
+        print((root.id, root.firstname, root.lastname, root.email))
+        InOrder(root.right)
+            
+def PostOrder(root):
+    if root != None:
+        PostOrder(root.left)
+        PostOrder(root.right)
+        print((root.id, root.firstname, root.lastname, root.email))
+    
+def PreOrder(root):
+    if root != None:
+        print((root.id, root.firstname, root.lastname, root.email))
+        PreOrder(root.left)
+        PreOrder(root.right)
 
 def countNodes(root):
     result = 0
@@ -159,7 +161,15 @@ while True:
               "3.Preorder")
 
         choice=input("Select Way:")
-        showInOrder(root,choice)
+        if choice==1:
+            InOrder(root)
+            
+        elif choice==2:
+            PostOrder(root)
+
+        else:
+            PreOrder(root)
+
         print(("Number of node:%d") % (countNodes(root)))
 
     elif ch == "3":
