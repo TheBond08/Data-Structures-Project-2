@@ -1,5 +1,8 @@
 import csv
 
+
+
+
 file = open("MOCK_DATA.csv", newline='')
 reader = csv.reader(file)
 
@@ -16,9 +19,11 @@ for row in reader:
 
     dataRecord.append([id, firstname, lastname, email])
 
+
+
 class node:
     def __init__(self):
-        self.id = 0
+        self.id = int
         self.firstname = ""
         self.lastname= ""
         self.email = " "
@@ -26,16 +31,18 @@ class node:
         self.right = None
 
 
+i = 0
+j = 0
+k = 0
+l = 0
 
 
 def createNode():
     r = node()
-
-
-    r.id = dataRecord[0]
-    r.firstname = dataRecord[1]
-    r.lastname= dataRecord[2]
-    r.email = dataRecord[3]
+    r.id = int(dataRecord[i][0])
+    r.firstname = dataRecord[j][1]
+    r.lastname= dataRecord[k][2]
+    r.email = dataRecord[l][3]
 
     return r
 
@@ -45,6 +52,7 @@ def addInOrder(root, newNode):
             root.left = newNode
         else:
             addInOrder(root.left, newNode)
+
     else:
         if root.right == None:
             root.right = newNode
@@ -81,6 +89,8 @@ def findByID(root, id):
 
 root = None
 
+
+
 while True:
     print("""-------------------Menu-----------------------")
 1. Add in order
@@ -95,15 +105,23 @@ while True:
     elif ch == "1":
         temp = createNode()
         if root == None:
+
             root = temp
         else:
+            i = i + 1
+            j = j + 1
+            k = k + 1
+            l = l + 1
             addInOrder(root, temp)
+
+
+
     elif ch == "2":
         showInOrder(root)
         print(("Number of node:%d") % (countNodes(root)))
     elif ch == "3":
-        userarithmos_mitroou = input("Give ID: ")
-        temp = findByID(root, userarithmos_mitroou)
+        id= input("Give ID: ")
+        temp = findByID(root, id)
         if temp == None:
             print("Not found!")
         else:
