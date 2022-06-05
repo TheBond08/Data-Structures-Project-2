@@ -39,7 +39,7 @@ l = 0
 
 def createNode():
     r = node()
-    r.id = int(dataRecord[i][0])
+    r.id = (dataRecord[i][0])
     r.firstname = dataRecord[j][1]
     r.lastname= dataRecord[k][2]
     r.email = dataRecord[l][3]
@@ -119,8 +119,9 @@ while True:
     elif ch == "2":
         showInOrder(root)
         print(("Number of node:%d") % (countNodes(root)))
+
     elif ch == "3":
-        id= input("Give ID: ")
+        id= int(input("Give ID: "))
         temp = findByID(root, id)
         if temp == None:
             print("Not found!")
