@@ -60,13 +60,13 @@ def InOrder(root):
         InOrder(root.left)
         print((root.id, root.firstname, root.lastname, root.email))
         InOrder(root.right)
-            
+
 def PostOrder(root):
     if root != None:
         PostOrder(root.left)
         PostOrder(root.right)
         print((root.id, root.firstname, root.lastname, root.email))
-    
+
 def PreOrder(root):
     if root != None:
         print((root.id, root.firstname, root.lastname, root.email))
@@ -104,6 +104,7 @@ root = None
 count=0
 time_taken=0.0
 amount_of_data=[100]
+flag=True
 while True:
     print("""-------------------Menu-----------------------")
 1. Add in order
@@ -150,36 +151,52 @@ while True:
         plt.show()
         plt.close()
 
-
-
-
-
     elif ch == "2":
-        print("Ways Of Order:"
-              "1.Inorder"
-              "2.Postorder"
-              "3.Preorder")
+        print("""Ways Of Order:
+            1.Inorder
+            2.Postorder
+            3.Preorder""")
 
-        choice=input("Select Way:")
-        if choice==1:
+        choice = int(input("Select Way:"))
+
+        while flag==True:
+          if choice>3 or choice<1:
+            print("Try Again!")
+            choice=int(input("Select Way:"))
+          else:
+            flag=False
+
+        if choice == 1:
             InOrder(root)
-            
-        elif choice==2:
+
+        elif choice == 2:
             PostOrder(root)
 
-        else:
+        elif choice==3:
             PreOrder(root)
 
         print(("Number of node:%d") % (countNodes(root)))
 
     elif ch == "3":
         id = int(input("Give ID: "))
+        start=time.time()
         temp = findByID(root, id)
+        end=time.time()
         if temp == None:
             print("Not found!")
         else:
             print(("%d %s %s %s") % (temp.id, temp.firstname, temp.lastname,
                                      temp.email))
+
+            plt.plot(amount_of_data, time_taken, color="blue", marker="o", linestyle="solid")
+            plt.grid(axis='x')
+            plt.grid(axis='y')
+            plt.xticks(amount_of_data)
+            plt.title(" Χρόνος Εύρεσης Στοιχείου")
+            plt.ylabel("Χρόνος")
+            plt.xlabel("Πλήθος Δεδομένων")
+            plt.show()
+            plt.close()
 
     else:
         print("Try again!")
