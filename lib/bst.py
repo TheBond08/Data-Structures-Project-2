@@ -29,10 +29,6 @@ class node:
         self.right = None
 
 
-i = 0
-j = 0
-k = 0
-l = 0
 
 
 def createNode():
@@ -59,7 +55,7 @@ def addInOrder(root, newNode):
             addInOrder(root.right, newNode)
 
 
-def showInOrder(root):
+def showInOrder(root,choice):
     if root != None:
         showInOrder(root.left)
         print((root.id, root.firstname, root.lastname, root.email))
@@ -88,6 +84,10 @@ def findByID(root, id):
 
     return result
 
+i = 0
+j = 0
+k = 0
+l = 0
 
 root = None
 count=0
@@ -144,7 +144,13 @@ while True:
 
 
     elif ch == "2":
-        showInOrder(root)
+        print("Ways Of Order:"
+              "1.Inorder"
+              "2.Postorder"
+              "3.Preorder")
+
+        choice=input("Select Way:")
+        showInOrder(root,choice)
         print(("Number of node:%d") % (countNodes(root)))
 
     elif ch == "3":
