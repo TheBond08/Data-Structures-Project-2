@@ -106,19 +106,25 @@ def binary_search_tree():
     time_taken=0.0
     amount_of_data=[100]
     flag=True
+    
+    flag_mock_data = True
 
     while True:
-        print("""-------------------Menu-----------------------
-    1. Add in order
-    2. Show in order
-    3. Find student by ID
-    0. Exit""")
+        print("-------------------Menu-----------------------")
+        if flag_mock_data == True:
+            print("    1. Add mock data to the tree")
+        else:
+            print("""    2. Show in order
+    3. Find student by ID""")
+        
+        print("0. Exit")
 
         ch = input("Choice: ").strip()
 
         if ch == "0":
             break
         elif ch == "1":
+            flag_mock_data = False
             start = time.time()
             while count<=99:
 
