@@ -1,6 +1,10 @@
 # Python code to delete a node in AVL tree
 # https://www.geeksforgeeks.org/avl-tree-set-2-deletion/
 # Generic tree node class
+
+
+#avl tree does not work as we want
+
 class TreeNode(object):
 	def __init__(self, val):
 		self.val = val
