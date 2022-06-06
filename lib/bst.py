@@ -107,11 +107,11 @@ def binary_search_tree():
     amount_of_data=[100]
     flag=True
     
-    flag_mock_data = True
+    flag_mock_data = False
 
     while True:
         print("-------------------Menu-----------------------")
-        if flag_mock_data == True:
+        if flag_mock_data == False:
             print("    1. Add mock data to the tree")
         else:
             print("""    2. Show in order
@@ -123,8 +123,8 @@ def binary_search_tree():
 
         if ch == "0":
             break
-        elif ch == "1" and flag_mock_data == True:
-            flag_mock_data = False
+        elif ch == "1" and flag_mock_data == False:
+            flag_mock_data = True
             start = time.time()
             while count<=99:
 
@@ -159,7 +159,7 @@ def binary_search_tree():
             plt.show()
             plt.close()
 
-        elif ch == "2":
+        elif ch == "2" and flag_mock_data == True:
             print("""Ways Of Order:
                 1.Inorder
                 2.Postorder
@@ -185,7 +185,7 @@ def binary_search_tree():
 
             print(("Number of node:%d") % (countNodes(root)))
 
-        elif ch == "3":
+        elif ch == "3" and flag_mock_data == True:
             id = int(input("Give ID: "))
             start=time.time()
             temp = findByID(root, id)

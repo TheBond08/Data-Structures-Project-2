@@ -11,4 +11,4 @@ while True:
     elif user_input == 2:
         trees()
     else:
-        break    
+        break
