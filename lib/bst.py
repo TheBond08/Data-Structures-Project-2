@@ -123,7 +123,7 @@ def binary_search_tree():
 
         if ch == "0":
             break
-        elif ch == "1":
+        elif ch == "1" and flag_mock_data == True:
             flag_mock_data = False
             start = time.time()
             while count<=99:
