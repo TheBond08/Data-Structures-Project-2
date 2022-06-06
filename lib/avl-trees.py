@@ -3,6 +3,10 @@
 # Generic tree node class
 class TreeNode(object):
 	def __init__(self, val):
+		self.id = int
+		self.firstname = ""
+		self.lastname = ""
+		self.email = " "
 		self.val = val
 		self.left = None
 		self.right = None
@@ -184,10 +188,25 @@ class AVL_Tree(object):
 
 myTree = AVL_Tree()
 root = None
-nums = [9, 5, 10, 0, 6, 11, -1, 1, 2]
 
-for num in nums:
-	root = myTree.insert(root, num)
+file = open("MOCK_DATA.csv", newline='')
+reader = csv.reader(file)
+
+header = next(reader)
+
+# Πινακας αποθήκευσης δεδομένων csv
+dataRecord = []
+# Τροποποίηση δεδομένων απο str σε ο,τι επιθημούμε
+for row in reader:
+    id = int(row[0])
+    firstname = str(row[1])
+    lastname = str(row[2])
+    email = str(row[3])
+
+    dataRecord.append([id, firstname, lastname, email])
+
+for data in dataRecord:
+	root = myTree.insert(root, data)
 
 # Preorder Traversal
 print("Preorder Traversal after insertion -")

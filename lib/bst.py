@@ -105,6 +105,7 @@ count=0
 time_taken=0.0
 amount_of_data=[100]
 flag=True
+
 while True:
     print("""-------------------Menu-----------------------")
 1. Add in order
@@ -160,7 +161,7 @@ while True:
         choice = int(input("Select Way:"))
 
         while flag==True:
-          if choice>3 or choice<1:
+          if (choice>3 or choice<1):
             print("Try Again!")
             choice=int(input("Select Way:"))
           else:
