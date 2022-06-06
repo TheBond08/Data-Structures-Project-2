@@ -92,7 +92,7 @@ def trees():
 
     while True:
         print("""-------------------Menu-----------------------
-    1. Add in order
+    1. Add the next item from the MOCK_DATA.csv file in order
     2. Show in order
     3. Find student by ID
     0. Exit""")
